@@ -1,10 +1,5 @@
-import {
-  GraphQLString,
-  GraphQLNonNull,
-} from 'graphql';
-import {
-  mutationWithClientMutationId,
-} from 'graphql-relay';
+import { GraphQLString, GraphQLNonNull } from 'graphql';
+import { mutationWithClientMutationId } from 'graphql-relay';
 
 import UserType from '../type/UserType';
 import { UserLoader } from '../loader';
@@ -47,7 +42,7 @@ export default mutationWithClientMutationId({
     },
     me: {
       type: UserType,
-      resolve: (obj, args, context) => UserLoader.load(context, user.id),
+      resolve: (obj, args, context) => UserLoader.load(context, obj.id),
     },
   },
 });

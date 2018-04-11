@@ -3,7 +3,7 @@ import { schema } from '../../schema';
 import { User } from '../../model';
 import { getContext, setupTest } from '../../../test/helper';
 
-beforeEach(async () => await setupTest());
+beforeEach(async () => setupTest());
 
 it('should not show email of other users', async () => {
   const user = new User({
@@ -20,7 +20,7 @@ it('should not show email of other users', async () => {
   });
   await user1.save();
 
-  //language=GraphQL
+  // language=GraphQL
   const query = `
     query Q {
       users(first: 2) {

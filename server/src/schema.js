@@ -11,3 +11,5 @@ export const schema = new GraphQLSchema({
   mutation: MutationType,
   subscription: SubscriptionType,
 });
+
+export default schema;

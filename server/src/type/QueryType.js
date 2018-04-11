@@ -1,8 +1,7 @@
 // @flow
 
 import { GraphQLObjectType, GraphQLString, GraphQLNonNull, GraphQLID } from 'graphql';
-import { globalIdField, connectionArgs, fromGlobalId } from 'graphql-relay';
-import { NodeInterface } from '../interface/NodeInterface';
+import { connectionArgs, fromGlobalId } from 'graphql-relay';
 
 import UserType from './UserType';
 import { NodeField } from '../interface/NodeInterface';

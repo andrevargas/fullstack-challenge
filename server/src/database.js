@@ -14,3 +14,5 @@ export function connectDatabase() {
     mongoose.connect(databaseConfig);
   });
 }
+
+export default connectDatabase;

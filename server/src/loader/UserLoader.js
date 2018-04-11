@@ -1,10 +1,11 @@
 // @flow
 import DataLoader from 'dataloader';
-import { User as UserModel } from '../model';
 import { connectionFromMongoCursor, mongooseLoader } from '@entria/graphql-mongoose-loader';
 
 import type { ConnectionArguments } from 'graphql-relay';
 import type { GraphQLContext } from '../TypeDefinition';
+
+import { User as UserModel } from '../model';
 
 type UserType = {
   id: string,
@@ -37,10 +38,8 @@ export default class User {
 
 export const getLoader = () => new DataLoader(ids => mongooseLoader(UserModel, ids));
 
-const viewerCanSee = (context, data) => {
-  // Anyone can see another user
-  return true;
-};
+// Anyone can see another user
+const viewerCanSee = () => true;
 
 export const load = async (context: GraphQLContext, id: string): Promise<?User> => {
   if (!id) {
@@ -56,9 +55,7 @@ export const load = async (context: GraphQLContext, id: string): Promise<?User> 
   return viewerCanSee(context, data) ? new User(data, context) : null;
 };
 
-export const clearCache = ({ dataloaders }: GraphQLContext, id: string) => {
-  return dataloaders.UserLoader.clear(id.toString());
-};
+export const clearCache = ({ dataloaders }: GraphQLContext, id: string) => dataloaders.UserLoader.clear(id.toString());
 
 export const loadUsers = async (context: GraphQLContext, args: ConnectionArguments) => {
   const where = args.search ? { name: { $regex: new RegExp(`^${args.search}`, 'ig') } } : {};

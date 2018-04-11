@@ -3,13 +3,11 @@ import 'isomorphic-fetch';
 
 import Koa from 'koa';
 import bodyParser from 'koa-bodyparser';
-import convert from 'koa-convert';
 import cors from 'kcors';
 import graphqlHttp from 'koa-graphql';
 import graphqlBatchHttpWrapper from 'koa-graphql-batch';
 import logger from 'koa-logger';
 import Router from 'koa-router';
-// import { print } from 'graphql/language';
 import { graphiqlKoa } from 'apollo-server-koa';
 
 import { schema } from './schema';
@@ -26,8 +24,8 @@ const graphqlSettingsPerReq = async req => {
   const { user } = await getUser(req.header.authorization);
 
   const dataloaders = Object.keys(loaders).reduce(
-    (dataloaders, loaderKey) => ({
-      ...dataloaders,
+    (loadersMap, loaderKey) => ({
+      ...loadersMap,
       [loaderKey]: loaders[loaderKey].getLoader(),
     }),
     {},
@@ -41,11 +39,7 @@ const graphqlSettingsPerReq = async req => {
       req,
       dataloaders,
     },
-    // extensions: ({ document, variables, operationName, result }) => {
-    // console.log(print(document));
-    // console.log(variables);
-    // console.log(result);
-    // },
+
     formatError: error => {
       console.log(error.message);
       console.log(error.locations);

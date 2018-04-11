@@ -1,18 +1,13 @@
 import { graphql } from 'graphql';
 import { schema } from '../../schema';
-import {
-  User,
-} from '../../model';
+import { User } from '../../model';
 import { generateToken } from '../../auth';
-import {
-  getContext,
-  setupTest,
-} from '../../../test/helper';
+import { getContext, setupTest } from '../../../test/helper';
 
-beforeEach(async () => await setupTest());
+beforeEach(async () => setupTest());
 
 it('should not login if email is not in the database', async () => {
-  //language=GraphQL
+  // language=GraphQL
   const query = `
     mutation M {
       LoginEmail(input: {
@@ -33,7 +28,6 @@ it('should not login if email is not in the database', async () => {
   const result = await graphql(schema, query, rootValue, context);
   const { LoginEmail } = result.data;
 
-
   expect(LoginEmail.token).toBe(null);
   expect(LoginEmail.error).toBe('INVALID_EMAIL_PASSWORD');
 });
@@ -46,7 +40,7 @@ it('should not login with wrong email', async () => {
   });
   await user.save();
 
-  //language=GraphQL
+  // language=GraphQL
   const query = `
     mutation M {
       LoginEmail(input: {
@@ -82,7 +76,7 @@ it('should generate token when email and password is correct', async () => {
   });
   await user.save();
 
-  //language=GraphQL
+  // language=GraphQL
   const query = `
     mutation M {
       LoginEmail(input: {
