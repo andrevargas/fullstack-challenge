@@ -32,7 +32,7 @@ const Schema = new mongoose.Schema(
   },
 );
 
-Schema.pre('save', next => {
+Schema.pre('save', function preSave(next) {
   // Hash the password
   if (this.isModified('password')) {
     this.password = this.encryptPassword(this.password);
