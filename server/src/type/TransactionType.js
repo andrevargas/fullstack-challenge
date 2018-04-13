@@ -4,6 +4,8 @@ import { GraphQLObjectType, GraphQLString, GraphQLFloat, GraphQLEnumType } from 
 import { globalIdField } from 'graphql-relay';
 import { NodeInterface } from '../interface/NodeInterface';
 
+import WalletType from './WalletType';
+
 export const TransactionTypeEnum = new GraphQLEnumType({
   name: 'TransactionType',
   values: {
@@ -36,6 +38,10 @@ export default new GraphQLObjectType({
     date: {
       type: GraphQLString,
       resolve: transaction => transaction.date,
+    },
+    wallet: {
+      type: WalletType,
+      resolve: transaction => transaction.wallet,
     },
   }),
   interfaces: () => [NodeInterface],
