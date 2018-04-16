@@ -37,7 +37,7 @@ export default new GraphQLObjectType({
     },
     date: {
       type: GraphQLString,
-      resolve: transaction => transaction.date,
+      resolve: transaction => transaction.date.toISOString(),
     },
     wallet: {
       type: WalletType,

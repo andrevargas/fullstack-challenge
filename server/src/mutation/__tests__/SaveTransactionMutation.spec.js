@@ -7,14 +7,14 @@ beforeEach(async () => setupTest());
 
 describe('SaveTransactionMutation', () => {
   it('should create a new record if the parameters are valid', async () => {
-    const value = 20;
+    const value = 10;
     const description = 'Bought some React stickers';
-    const type = 'expense';
-    const date = Date.now;
+    const type = 'EXPENSE';
+    const date = new Date().toISOString();
 
     const wallet = new Wallet({
       name: 'My Wallet',
-      balance: 100,
+      balance: 1000,
     });
 
     await wallet.save();
@@ -23,12 +23,22 @@ describe('SaveTransactionMutation', () => {
       mutation M {
         SaveTransaction(input: {
           value: ${value},
-          description: ${description},
-          type: "${type}",
+          description: "${description}",
+          type: ${type},
           date: "${date}",
-          wallet: "${wallet._id}"
+          walletId: "${wallet._id}"
         }) {
-          newTransaction,
+          newTransaction {
+            value,
+            description,
+            type,
+            date,
+            wallet {
+              _id,
+              name,
+              balance
+            }
+          },
           error
         }
       }
@@ -38,16 +48,19 @@ describe('SaveTransactionMutation', () => {
     const context = getContext();
 
     const result = await graphql(schema, query, rootValue, context);
-    const { SaveWallet } = result.data;
+    const { SaveTransaction: { error, newTransaction } } = result.data;
 
-    expect(SaveWallet.error).toBeNull();
-    expect(SaveWallet.newTransaction).toBeDefined();
-    expect(SaveWallet.newTransaction).not.toBeNull();
+    expect(error).toBeNull();
+    expect(newTransaction).toBeDefined();
+    expect(newTransaction).not.toBeNull();
 
-    expect(SaveWallet.newTransaction).toHaveProperty('value', value);
-    expect(SaveWallet.newTransaction).toHaveProperty('description', description);
-    expect(SaveWallet.newTransaction).toHaveProperty('type', type);
-    expect(SaveWallet.newTransaction).toHaveProperty('date', date);
-    expect(SaveWallet.newTransaction).toHaveProperty('wallet', wallet._id);
+    expect(newTransaction).toHaveProperty('value', value);
+    expect(newTransaction).toHaveProperty('description', description);
+    expect(newTransaction).toHaveProperty('type', type);
+    expect(newTransaction).toHaveProperty('date', date);
+
+    expect(newTransaction).toHaveProperty('wallet._id', wallet._id.toString());
+    expect(newTransaction).toHaveProperty('wallet.name', wallet.name);
+    expect(newTransaction).toHaveProperty('wallet.balance', wallet.balance - value);
   });
 });

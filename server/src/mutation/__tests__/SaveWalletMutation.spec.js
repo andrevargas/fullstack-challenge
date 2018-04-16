@@ -16,8 +16,11 @@ describe('SaveWalletMutation', () => {
           name: "${name}",
           balance: ${balance}
         }) {
-          newWallet,
-          error
+          error,
+          newWallet {
+            name,
+            balance
+          }
         }
       }
     `;
@@ -26,14 +29,14 @@ describe('SaveWalletMutation', () => {
     const context = getContext();
 
     const result = await graphql(schema, query, rootValue, context);
-    const { SaveWallet } = result.data;
+    const { SaveWallet: { error, newWallet } } = result.data;
 
-    expect(SaveWallet.error).toBeNull();
-    expect(SaveWallet.newWallet).toBeDefined();
-    expect(SaveWallet.newWallet).not.toBeNull();
+    expect(error).toBeNull();
+    expect(newWallet).toBeDefined();
+    expect(newWallet).not.toBeNull();
 
-    expect(SaveWallet.newWallet).toHaveProperty('name', name);
-    expect(SaveWallet.newWallet).toHaveProperty('balance', balance);
+    expect(newWallet).toHaveProperty('name', name);
+    expect(newWallet).toHaveProperty('balance', balance);
   });
 
   it('should update the record if it already exists', async () => {
@@ -57,7 +60,12 @@ describe('SaveWalletMutation', () => {
           description: "${description}",
           balance: ${balance}
         }) {
-          newWallet,
+          newWallet {
+            _id,
+            name,
+            description,
+            balance
+          },
           error
         }
       }
@@ -67,14 +75,14 @@ describe('SaveWalletMutation', () => {
     const context = getContext();
 
     const result = await graphql(schema, query, rootValue, context);
-    const { SaveWallet } = result.data;
+    const { SaveWallet: { error, newWallet } } = result.data;
 
-    expect(SaveWallet.error).toBeNull();
+    expect(error).toBeNull();
 
-    expect(SaveWallet.newWallet).toHaveProperty('name', name);
-    expect(SaveWallet.newWallet).toHaveProperty('description', description);
-    expect(SaveWallet.newWallet).toHaveProperty('balance', balance);
+    expect(newWallet).toHaveProperty('name', name);
+    expect(newWallet).toHaveProperty('description', description);
+    expect(newWallet).toHaveProperty('balance', balance);
 
-    expect(SaveWallet.newWallet).toHaveProperty('_id', wallet._id);
+    expect(newWallet).toHaveProperty('_id', wallet._id.toString());
   });
 });

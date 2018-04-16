@@ -1,6 +1,10 @@
 // @flow
 
-import mongoose from 'mongoose';
+import mongoose, { SchemaTypes } from 'mongoose';
+import Wallet from './Wallet';
+
+export const EXEPENSE = 'expense';
+export const REVENUE = 'revenue';
 
 const Schema = new mongoose.Schema(
   {
@@ -15,14 +19,14 @@ const Schema = new mongoose.Schema(
     type: {
       type: String,
       required: true,
-      enum: ['expense', 'revenue'],
+      enum: [EXEPENSE, REVENUE],
     },
     date: {
       type: Date,
       required: true,
     },
     wallet: {
-      type: mongoose.SchemaTypes.ObjectId,
+      type: SchemaTypes.ObjectId,
       ref: 'Wallet',
     },
   },
@@ -34,5 +38,19 @@ const Schema = new mongoose.Schema(
     collection: 'transaction',
   },
 );
+
+Schema.post('save', async transaction => {
+  const wallet = await Wallet.findById(transaction.wallet);
+
+  if (transaction.type === EXEPENSE) {
+    wallet.balance -= transaction.value;
+  }
+
+  if (transaction.type === REVENUE) {
+    wallet.balance += transaction.value;
+  }
+
+  await wallet.save();
+});
 
 export default mongoose.model('Transaction', Schema);
