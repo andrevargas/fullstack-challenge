@@ -4,16 +4,29 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
+    "run:android": "node node_modules/react-native/local-cli/cli.js run-android",
+    "run:ios": "node node_modules/react-native/local-cli/cli.js run-ios",
+    "eslint": "eslint ./",
+    "eslint:fix": "npm run eslint -- --fix",
     "test": "jest"
   },
   "dependencies": {
     "react": "16.3.1",
-    "react-native": "0.55.3"
+    "react-native": "0.55.3",
+    "react-native-linear-gradient": "^2.4.0",
+    "styled-components": "^3.2.6"
   },
   "devDependencies": {
+    "babel-eslint": "^8.2.3",
     "babel-jest": "22.4.3",
+    "babel-preset-flow": "^6.23.0",
     "babel-preset-react-native": "4.0.0",
+    "eslint": "^4.19.1",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-prettier": "^2.6.0",
+    "eslint-plugin-react": "^7.7.0",
     "jest": "22.4.3",
+    "prettier": "^1.12.1",
     "react-test-renderer": "16.3.1"
   },
   "jest": {
