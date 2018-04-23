@@ -4,7 +4,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import styled from 'styled-components/native';
 
 const BalanceInfo = ({ balance }) => (
-  <Gradient colors={['#4AA2FB', '#7483f6']} end={{ x: 0, y: 0.9 }}>
+  <Gradient colors={['#21b6fe', '#7483f7']} end={{ x: 0, y: 0.8 }}>
     <Label>Balance (BRL)</Label>
     <Text>${balance}</Text>
   </Gradient>
