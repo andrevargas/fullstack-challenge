@@ -1,4 +1,17 @@
 {
   "presets": ["flow", "react-native"],
-  "plugins": ["relay"]
+  "plugins": [
+    "relay",
+    [
+      "module-resolver",
+      {
+        "root": "./",
+        "alias": {
+          "@app": "./src",
+          "@components": "./src/components",
+          "@features": "./src/features"
+        }
+      }
+    ]
+  ]
 }
