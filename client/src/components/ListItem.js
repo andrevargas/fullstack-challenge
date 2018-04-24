@@ -1,20 +1,44 @@
+// @flow
 import React from 'react';
 import styled from 'styled-components/native';
 
-const ListItem = ({ title, detail }) => (
+import type { Element } from 'react';
+
+type Props = {
+  title: string,
+  subtitle: string,
+  renderRight?: () => Element,
+};
+
+const ListItem = ({ title, subtitle, renderRight }: Props) => (
   <Wrapper>
-    <Title>{title}</Title>
-    <Detail>{detail}</Detail>
+    <Column>
+      <Title>{title}</Title>
+      <Subtitle>{subtitle}</Subtitle>
+    </Column>
+    <Column>{renderRight()}</Column>
   </Wrapper>
 );
 
 const Wrapper = styled.View`
-  padding: 15px;
+  padding-vertical: 10px;
+  padding-horizontal: 20px;
   flex-direction: row;
 `;
 
-const Title = styled.Text``;
+const Column = styled.View`
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+`;
 
-const Detail = styled.Text``;
+const Title = styled.Text`
+  font-size: 16px;
+  font-weight: 500;
+`;
+
+const Subtitle = styled.Text`
+  font-size: 12px;
+`;
 
 export default ListItem;
