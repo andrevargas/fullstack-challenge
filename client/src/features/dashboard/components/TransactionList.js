@@ -1,8 +1,8 @@
 // @flow
-import React from 'react';
-import { FlatList } from 'react-native';
+import React, { Component } from 'react';
 import styled from 'styled-components/native';
-import ListItem from '@components/ListItem';
+import List from '@components/List';
+import { colors } from '@app/constants/styles';
 
 type TransactionRecord = {
   _id: string,
@@ -16,42 +16,46 @@ type Props = {
   data: Array<TransactionRecord>,
 };
 
-const TransactionList = ({ data }: Props) => (
-  <Wrapper>
-    <Header>
-      <Title>Transaction History</Title>
-    </Header>
-    <FlatList
-      data={data}
-      keyExtractor={item => item._id}
-      ItemSeparatorComponent={Separator}
-      renderItem={({ item }) => (
-        <ListItem
-          title={item.description}
-          subtitle={item.date}
-          renderRight={() => (
-            <Value type={item.type}>
-              {item.type === 'EXPENSE' ? '\u2212' : '\u002B'} ${item.value.toFixed(
-                2
-              )}
-            </Value>
-          )}
+class TransactionList extends Component<Props> {
+  renderItem({ item }) {
+    return (
+      <List.Item
+        title={item.description}
+        subtitle={item.date}
+        renderRight={() => (
+          <Value type={item.type}>
+            {item.type === 'EXPENSE' ? '\u2212' : '\u002B'}
+            &nbsp; ${item.value.toFixed(2)}
+          </Value>
+        )}
+      />
+    );
+  }
+
+  render() {
+    return (
+      <Wrapper>
+        <Header>
+          <Title>Transaction History</Title>
+        </Header>
+        <List
+          data={this.props.data}
+          keyExtractor={item => item._id}
+          renderItem={this.renderItem}
         />
-      )}
-    />
-  </Wrapper>
-);
+      </Wrapper>
+    );
+  }
+}
 
 const Wrapper = styled.View`
-  width: 100%;
-  height: 60%;
-  background-color: #f5f5f8;
+  flex: 2;
+  background-color: ${colors.ghostwhite};
 `;
 
 const Header = styled.View`
   width: 100%;
   padding: 10px;
-  background-color: hsl(233, 21%, 90%);
 `;
 
 const Title = styled.Text`
@@ -59,14 +63,8 @@ const Title = styled.Text`
   font-size: 15px;
 `;
 
-const Separator = styled.View`
-  height: 1px;
-  width: 100%;
-  background-color: hsl(233, 21%, 93%);
-`;
-
 const Value = styled.Text`
-  color: ${props => (props.type === 'EXPENSE' ? '#ff6350' : '#4AA2FB')};
+  color: ${props => (props.type === 'EXPENSE' ? colors.tomato : colors.blue)};
   font-size: 16px;
   text-align: right;
   font-weight: 500;

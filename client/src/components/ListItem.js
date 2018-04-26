@@ -1,6 +1,7 @@
 // @flow
 import React from 'react';
 import styled from 'styled-components/native';
+import Column from './Column';
 
 import type { Element } from 'react';
 
@@ -24,12 +25,6 @@ const Wrapper = styled.View`
   padding-vertical: 10px;
   padding-horizontal: 20px;
   flex-direction: row;
-`;
-
-const Column = styled.View`
-  flex: 1;
-  flex-direction: column;
-  justify-content: center;
 `;
 
 const Title = styled.Text`

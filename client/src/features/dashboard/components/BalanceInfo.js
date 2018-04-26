@@ -2,34 +2,43 @@
 import React from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 import styled from 'styled-components/native';
+import Button from '@components/Button';
+import { colors } from '@app/constants/styles';
 
 const BalanceInfo = ({ balance }) => (
-  <Gradient colors={['#21b6fe', '#7483f7']} end={{ x: 0, y: 0.8 }}>
+  <Gradient
+    end={{ x: 0, y: 0.8 }}
+    colors={[colors.blue, colors.cornflowerblue]}>
     <Label>Balance (BRL)</Label>
     <Text>${balance}</Text>
+    <SpacedButton title={'💲 NEW TRANSACTION'} />
   </Gradient>
 );
 
+const SpacedButton = styled(Button)`
+  margin-top: 25px;
+`;
+
 const Gradient = styled(LinearGradient)`
-  width: 100%;
-  height: 40%;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
 `;
 
 const Label = styled.Text`
   font-size: 18px;
   text-align: center;
   letter-spacing: 1.09px;
-  color: hsl(0, 0%, 100%);
-  text-shadow: 1px 1px 10px hsla(0, 0%, 0%, 0.2);
-  margin-top: 15%;
+  color: ${colors.white};
+  text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
 `;
 
 const Text = styled.Text`
   font-size: 50px;
   text-align: center;
   letter-spacing: 1.09px;
-  color: hsl(0, 0%, 100%);
-  text-shadow: 1px 1px 20px hsla(0, 0%, 0%, 0.2);
+  color: ${colors.white};
+  text-shadow: 1px 1px 20px rgba(0, 0, 0, 0.2);
 `;
 
 export default BalanceInfo;
