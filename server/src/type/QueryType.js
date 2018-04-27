@@ -4,14 +4,16 @@ import { GraphQLObjectType, GraphQLString, GraphQLList, GraphQLNonNull, GraphQLI
 import { connectionArgs, fromGlobalId } from 'graphql-relay';
 
 import UserType from './UserType';
-import { NodeField } from '../interface/NodeInterface';
-import { UserLoader } from '../loader';
 import UserConnection from '../connection/UserConnection';
 
-import WalletType from '../type/WalletType';
 import TransactionType from '../type/TransactionType';
+import TransactionConnection from '../connection/TransactionConnection';
 
-import { Wallet, Transaction } from '../model';
+import { NodeField } from '../interface/NodeInterface';
+import { UserLoader, TransactionLoader } from '../loader';
+
+import WalletType from '../type/WalletType';
+import { Wallet } from '../model';
 
 export default new GraphQLObjectType({
   name: 'Query',
@@ -48,7 +50,7 @@ export default new GraphQLObjectType({
       type: WalletType,
       args: {
         id: {
-          type: GraphQLNonNull(GraphQLString),
+          type: new GraphQLNonNull(GraphQLString),
         },
       },
       resolve: async (rootValue, { id }) => Wallet.findById(id),
@@ -61,22 +63,18 @@ export default new GraphQLObjectType({
       type: TransactionType,
       args: {
         id: {
-          type: GraphQLNonNull(GraphQLString),
+          type: new GraphQLNonNull(GraphQLString),
         },
       },
-      resolve: async (rootValue, { id }) => Transaction.findById(id),
+      resolve: (rootValue, args, context) => {
+        const { id } = fromGlobalId(args.id);
+        return TransactionLoader.load(context, id);
+      },
     },
     transactions: {
-      type: new GraphQLList(TransactionType),
-      args: {
-        walletId: {
-          type: GraphQLString,
-        },
-      },
-      resolve: async (rootValue, { walletId }) => {
-        const conditions = walletId ? { wallet: walletId } : {};
-        return Transaction.find(conditions).populate('wallet');
-      },
+      type: TransactionConnection.connectionType,
+      args: connectionArgs,
+      resolve: (rootValue, args, context) => TransactionLoader.loadTransactions(context, args),
     },
   }),
 });
