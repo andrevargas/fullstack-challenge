@@ -1,7 +1,7 @@
 {
   "presets": ["flow", "react-native"],
   "plugins": [
-    "relay",
+    ["relay", { "schema": "data/schema.json" }],
     [
       "module-resolver",
       {

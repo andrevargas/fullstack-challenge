@@ -4,28 +4,17 @@ import styled from 'styled-components/native';
 import List from '@components/List';
 import { colors } from '@app/constants/styles';
 
-type TransactionRecord = {
-  _id: string,
-  description: string,
-  value: string,
-  type: 'EXPENSE' | 'REVENUE',
-  date: string,
-};
-
-type Props = {
-  data: Array<TransactionRecord>,
-};
-
-class TransactionList extends Component<Props> {
+class TransactionList extends Component {
   renderItem({ item }) {
+    const { node } = item;
     return (
       <List.Item
-        title={item.description}
-        subtitle={item.date}
+        title={node.description}
+        subtitle={new Date(node.date).toLocaleDateString()}
         renderRight={() => (
-          <Value type={item.type}>
-            {item.type === 'EXPENSE' ? '\u2212' : '\u002B'}
-            &nbsp; ${item.value.toFixed(2)}
+          <Value type={node.type}>
+            {node.type === 'EXPENSE' ? '\u2212' : '\u002B'}
+            &nbsp; ${node.value.toFixed(2)}
           </Value>
         )}
       />
@@ -33,14 +22,15 @@ class TransactionList extends Component<Props> {
   }
 
   render() {
+    const { transactions } = this.props.query;
     return (
       <Wrapper>
         <Header>
           <Title>Transaction History</Title>
         </Header>
         <List
-          data={this.props.data}
-          keyExtractor={item => item._id}
+          data={transactions.edges}
+          keyExtractor={item => item.node.id}
           renderItem={this.renderItem}
         />
       </Wrapper>

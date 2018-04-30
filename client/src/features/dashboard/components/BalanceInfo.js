@@ -16,7 +16,7 @@ const BalanceInfo = ({ balance }) => (
 );
 
 const SpacedButton = styled(Button)`
-  margin-top: 25px;
+  margin-top: 20px;
 `;
 
 const Gradient = styled(LinearGradient)`

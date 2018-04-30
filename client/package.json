@@ -4,8 +4,10 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "run:android": "node node_modules/react-native/local-cli/cli.js run-android",
-    "run:ios": "node node_modules/react-native/local-cli/cli.js run-ios",
+    "android": "node node_modules/react-native/local-cli/cli.js run-android",
+    "ios": "node node_modules/react-native/local-cli/cli.js run-ios",
+    "relay": "relay-compiler --src ./src --schema data/schema.graphql",
+    "devtools": "react-devtools",
     "eslint": "eslint ./",
     "eslint:fix": "npm run eslint -- --fix",
     "test": "jest"
@@ -31,6 +33,7 @@
     "eslint-plugin-react": "^7.7.0",
     "jest": "22.4.3",
     "prettier": "^1.12.1",
+    "react-devtools": "^3.2.1",
     "react-test-renderer": "16.3.1",
     "relay-compiler": "^1.5.0"
   },

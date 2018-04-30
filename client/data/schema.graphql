@@ -1,0 +1,70 @@
+# An object with an ID.
+interface Node {
+  # The ID of the object.
+  id: ID!
+}
+
+# Information about pagination in a connection.
+type PageInfo {
+    # `true` if there are more items when paginating forwards, `false` otherwise.
+    hasNextPage: Boolean!
+
+    # `true` if there are more items when paginating backwards, `false` otherwise.
+    hasPreviousPage: Boolean!
+
+    # The cursor to continue when paginating backwards.
+    startCursor: String
+
+    # The cursor to continue when paginating forwards.
+    endCursor: String
+}
+
+# The root of all... queries.
+type Query implements Node {
+    # The ID of an object.
+    id: ID!
+
+    # A single Transaction object.
+    transaction(id: ID!): Transaction
+
+    # A connection of Transaction objects.
+    transactions(after: String, first: Int, before: String, last: Int, search: String): TransactionConnection
+}
+
+enum TransactionTypeEnum {
+  EXPENSE
+  REVENUE
+}
+
+# Transaction data.
+type Transaction implements Node {
+  # The ID of an object.
+  id: ID!
+
+  _id: String
+  value: Float
+  description: String
+  type: TransactionTypeEnum
+  date: String
+}
+
+# A connection to a list of items.
+type TransactionConnection {
+    # Information of a page in a pagination.
+    pageInfo: PageInfo!
+
+    # A list of edges.
+    edges: [TransactionEdge]
+
+    # Total count of items in a pagination.
+    count: Int
+}
+
+# A Transaction edge in a connection.
+type TransactionEdge {
+    # The item at the end of the edge.
+    node: Transaction
+
+    # A cursor for use in pagination.
+    cursor: String!
+}

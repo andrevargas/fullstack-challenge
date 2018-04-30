@@ -1,10 +1,8 @@
 // @flow
 import React, { Component } from 'react';
-import Dashboard from '@features/dashboard/components/Dashboard';
+import Dashboard from '@features/dashboard';
 
-type Props = {};
-
-export default class App extends Component<Props> {
+export default class App extends Component {
   render() {
     return <Dashboard />;
   }
