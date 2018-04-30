@@ -3,6 +3,8 @@
 import { GraphQLObjectType, GraphQLString, GraphQLList, GraphQLNonNull, GraphQLID } from 'graphql';
 import { connectionArgs, fromGlobalId } from 'graphql-relay';
 
+import DashboardType from './DashboardType';
+
 import UserType from './UserType';
 import UserConnection from '../connection/UserConnection';
 
@@ -45,6 +47,18 @@ export default new GraphQLObjectType({
         },
       },
       resolve: (obj, args, context) => UserLoader.loadUsers(context, args),
+    },
+    dashboard: {
+      type: DashboardType,
+      resolve: async () => {
+        const total = await Wallet.aggregate([
+          { $group: { _id: null, balance: { $sum: '$balance' } } },
+          { $project: { _id: 0 } },
+          { $limit: 1 },
+        ]);
+
+        return total[0];
+      },
     },
     wallet: {
       type: WalletType,

@@ -29,6 +29,17 @@ type Query implements Node {
 
     # A connection of Transaction objects.
     transactions(after: String, first: Int, before: String, last: Int, search: String): TransactionConnection
+
+    # Dashboard information
+    dashboard: Dashboard
+}
+
+type Dashboard implements Node {
+  # The ID of an object.
+  id: ID!
+
+  # Total balance.
+  balance: Float
 }
 
 enum TransactionTypeEnum {

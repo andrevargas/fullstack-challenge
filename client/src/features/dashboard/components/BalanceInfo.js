@@ -5,18 +5,18 @@ import styled from 'styled-components/native';
 import Button from '@components/Button';
 import { colors } from '@app/constants/styles';
 
-const BalanceInfo = ({ balance }) => (
+const BalanceInfo = ({ query }) => (
   <Gradient
     end={{ x: 0, y: 0.8 }}
     colors={[colors.blue, colors.cornflowerblue]}>
     <Label>Balance (BRL)</Label>
-    <Text>${balance}</Text>
+    <Text>${query.dashboard.balance.toFixed(2)}</Text>
     <SpacedButton title={'\ud83d\udcb2 NEW TRANSACTION'} />
   </Gradient>
 );
 
 const SpacedButton = styled(Button)`
-  margin-top: 20px;
+  margin-top: 2%;
 `;
 
 const Gradient = styled(LinearGradient)`
