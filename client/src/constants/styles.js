@@ -1,3 +1,5 @@
+// @flow
+
 export const colors = {
   white: '#ffffff',
   ghostwhite: '#f5f5f8',

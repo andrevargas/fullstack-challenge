@@ -11,7 +11,7 @@ const BalanceInfo = ({ balance }) => (
     colors={[colors.blue, colors.cornflowerblue]}>
     <Label>Balance (BRL)</Label>
     <Text>${balance}</Text>
-    <SpacedButton title={'💲 NEW TRANSACTION'} />
+    <SpacedButton title={'\ud83d\udcb2 NEW TRANSACTION'} />
   </Gradient>
 );
 

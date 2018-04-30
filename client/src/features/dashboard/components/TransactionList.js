@@ -2,9 +2,15 @@
 import React, { Component } from 'react';
 import styled from 'styled-components/native';
 import List from '@components/List';
+import TransactionSavedSubscription from '../subscriptions/TransactionSaved';
 import { colors } from '@app/constants/styles';
+import { types } from '@app/constants/app';
 
 class TransactionList extends Component {
+  componentDidMount() {
+    TransactionSavedSubscription();
+  }
+
   renderItem({ item }) {
     const { node } = item;
     return (
@@ -13,8 +19,8 @@ class TransactionList extends Component {
         subtitle={new Date(node.date).toLocaleDateString()}
         renderRight={() => (
           <Value type={node.type}>
-            {node.type === 'EXPENSE' ? '\u2212' : '\u002B'}
-            &nbsp; ${node.value.toFixed(2)}
+            {node.type === types.EXPENSE ? '\u2212' : '\u002B'}
+            &nbsp; ${node.value}
           </Value>
         )}
       />
@@ -54,7 +60,8 @@ const Title = styled.Text`
 `;
 
 const Value = styled.Text`
-  color: ${props => (props.type === 'EXPENSE' ? colors.tomato : colors.blue)};
+  color: ${props =>
+    props.type === types.EXPENSE ? colors.tomato : colors.blue};
   font-size: 16px;
   text-align: right;
   font-weight: 500;

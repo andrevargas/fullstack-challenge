@@ -68,3 +68,11 @@ type TransactionEdge {
     # A cursor for use in pagination.
     cursor: String!
 }
+
+type TransactionSavedPayload {
+  transactionEdge: TransactionEdge
+}
+
+type Subscription {
+  TransactionSaved: TransactionSavedPayload
+}
