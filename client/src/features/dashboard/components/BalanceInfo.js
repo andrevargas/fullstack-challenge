@@ -26,7 +26,7 @@ const Gradient = styled(LinearGradient)`
 `;
 
 const Label = styled.Text`
-  font-size: 18px;
+  font-size: 16px;
   text-align: center;
   letter-spacing: 1.09px;
   color: ${colors.white};

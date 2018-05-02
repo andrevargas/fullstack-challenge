@@ -11,6 +11,14 @@ class TransactionList extends Component {
     TransactionSavedSubscription();
   }
 
+  handleEndReached = () => {
+    const { relay } = this.props;
+
+    if (relay.hasMore() && !relay.isLoading()) {
+      relay.loadMore(10);
+    }
+  };
+
   renderItem({ item }) {
     const { node } = item;
     return (
@@ -38,6 +46,8 @@ class TransactionList extends Component {
           data={transactions.edges}
           keyExtractor={item => item.node.id}
           renderItem={this.renderItem}
+          onEndReached={this.handleEndReached}
+          onEndReachedThreshold={0.5}
         />
       </Wrapper>
     );
