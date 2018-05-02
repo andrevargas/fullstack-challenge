@@ -6,7 +6,10 @@ import environment from '@app/createRelayEnvironment';
 const subscription = graphql`
   subscription TransactionSavedSubscription {
     TransactionSaved {
-      transactionEdge {
+      dashboard {
+        balance
+      }
+      transaction {
         node {
           id
           value
@@ -23,8 +26,10 @@ export default function TransactionSavedSubscription() {
   requestSubscription(environment, {
     subscription,
     updater(store) {
-      const rootField = store.getRootField('TransactionSaved');
-      const transaction = rootField.getLinkedRecord('transactionEdge');
+      const transaction = store
+        .getRootField('TransactionSaved')
+        .getLinkedRecord('transaction')
+        .getLinkedRecord('node');
 
       const transactions = ConnectionHandler.getConnection(
         store.getRoot(),
@@ -35,7 +40,7 @@ export default function TransactionSavedSubscription() {
         store,
         transactions,
         transaction,
-        'Transaction'
+        'TransactionEdge'
       );
 
       ConnectionHandler.insertEdgeBefore(transactions, edge);

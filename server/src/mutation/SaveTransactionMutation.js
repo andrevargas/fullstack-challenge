@@ -2,7 +2,7 @@
 
 import { GraphQLString, GraphQLFloat, GraphQLNonNull } from 'graphql';
 import { mutationWithClientMutationId } from 'graphql-relay';
-import { Transaction } from '../model';
+import { Transaction, Wallet } from '../model';
 import TransactionType, { TransactionTypeEnum } from '../type/TransactionType';
 import pubSub, { EVENTS } from '../pubSub';
 
@@ -51,7 +51,12 @@ export default mutationWithClientMutationId({
       const newTransaction = await transaction.save();
       await newTransaction.populate('wallet').execPopulate();
 
-      await pubSub.publish(EVENTS.TRANSACTION.SAVED, { TransactionSaved: { transaction } });
+      await pubSub.publish(EVENTS.TRANSACTION.SAVED, {
+        TransactionSaved: {
+          transaction,
+          dashboard: await Wallet.getTotalBalance(),
+        },
+      });
 
       return {
         newTransaction,

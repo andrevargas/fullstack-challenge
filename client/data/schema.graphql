@@ -81,7 +81,8 @@ type TransactionEdge {
 }
 
 type TransactionSavedPayload {
-  transactionEdge: TransactionEdge
+  dashboard: Dashboard
+  transaction: TransactionEdge
 }
 
 type Subscription {

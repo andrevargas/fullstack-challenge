@@ -50,15 +50,7 @@ export default new GraphQLObjectType({
     },
     dashboard: {
       type: DashboardType,
-      resolve: async () => {
-        const total = await Wallet.aggregate([
-          { $group: { _id: null, balance: { $sum: '$balance' } } },
-          { $project: { _id: 0 } },
-          { $limit: 1 },
-        ]);
-
-        return total[0];
-      },
+      resolve: async () => Wallet.getTotalBalance(),
     },
     wallet: {
       type: WalletType,

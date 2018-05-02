@@ -20,7 +20,7 @@ class TransactionList extends Component {
         renderRight={() => (
           <Value type={node.type}>
             {node.type === types.EXPENSE ? '\u2212' : '\u002B'}
-            &nbsp; ${node.value}
+            &nbsp; ${node.value.toFixed(2)}
           </Value>
         )}
       />

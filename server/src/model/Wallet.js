@@ -26,4 +26,15 @@ const Schema = new mongoose.Schema(
   },
 );
 
+Schema.statics = {
+  getTotalBalance: async function getTotalBalance() {
+    const total = await this.aggregate([
+      { $group: { _id: null, balance: { $sum: '$balance' } } },
+      { $project: { _id: 0 } },
+      { $limit: 1 },
+    ]);
+    return total[0];
+  },
+};
+
 export default mongoose.model('Wallet', Schema);
