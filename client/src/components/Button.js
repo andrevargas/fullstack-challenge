@@ -2,13 +2,13 @@ import React from 'react';
 import { TouchableOpacity } from 'react-native';
 import styled from 'styled-components/native';
 
-const Button = ({ title, onPress, style }) => (
+const Button = ({ children, onPress, style }) => (
   <TouchableOpacity
     onPress={onPress}
     activeOpacity={0.5}
     accessibilityComponentType="button">
     <Background style={style}>
-      <Text>{title}</Text>
+      <Text>{children}</Text>
     </Background>
   </TouchableOpacity>
 );

@@ -88,3 +88,21 @@ type TransactionSavedPayload {
 type Subscription {
   TransactionSaved: TransactionSavedPayload
 }
+
+input SaveTransactionInput {
+  value: Float!
+  description: String!
+  type: TransactionTypeEnum!
+  date: String!
+  clientMutationId: String
+}
+
+type SaveTransactionPayload {
+  error: String
+  newTransaction: Transaction
+  clientMutationId: String
+}
+
+type Mutation {
+  SaveTransaction(input: SaveTransactionInput!): SaveTransactionPayload
+}

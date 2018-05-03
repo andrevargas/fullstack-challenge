@@ -11,7 +11,7 @@ const BalanceInfo = ({ query }) => (
     colors={[colors.blue, colors.cornflowerblue]}>
     <Label>Balance (BRL)</Label>
     <Text>${query.dashboard.balance.toFixed(2)}</Text>
-    <SpacedButton title={'\ud83d\udcb2 NEW TRANSACTION'} />
+    <SpacedButton>{'\ud83d\udcb2'} NEW TRANSACTION</SpacedButton>
   </Gradient>
 );
 
