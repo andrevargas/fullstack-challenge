@@ -37,6 +37,7 @@ class TransactionList extends Component {
 
   render() {
     const { transactions } = this.props.query;
+    const { isLoading } = this.props.relay;
     return (
       <Wrapper>
         <Header>
@@ -48,6 +49,7 @@ class TransactionList extends Component {
           renderItem={this.renderItem}
           onEndReached={this.handleEndReached}
           onEndReachedThreshold={0.5}
+          ListFooterComponent={<Footer animating={isLoading()} size="small" />}
         />
       </Wrapper>
     );
@@ -75,6 +77,14 @@ const Value = styled.Text`
   font-size: 16px;
   text-align: right;
   font-weight: 500;
+`;
+
+const Footer = styled.ActivityIndicator`
+  width: 100%;
+  height: 50px;
+  background-color: transparent;
+  align-items: center;
+  justify-content: center;
 `;
 
 export default TransactionList;
