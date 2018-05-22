@@ -1,12 +1,12 @@
 // @flow
 import React, { Component } from 'react';
-import { View } from 'react-native';
-import Dashboard from '@features/Dashboard';
+import { YellowBox } from 'react-native';
+import RootNavigator from './RootNavigator';
+
+YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated']);
 
 export default class App extends Component {
   render() {
-    return (
-      <Dashboard />
-    );
+    return <RootNavigator />;
   }
 }

@@ -8,3 +8,10 @@ export const colors = {
   cornflowerblue: '#7483f7',
   tomato: '#ff6350',
 };
+
+export const images = {
+  'squared-plus': require('../assets/squared-plus.png'),
+  'bar-graph': require('../assets/bar-graph.png'),
+  user: require('../assets/user.png'),
+  credit: require('../assets/credit.png'),
+};
