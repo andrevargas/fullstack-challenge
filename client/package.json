@@ -4,7 +4,10 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "android": "node node_modules/react-native/local-cli/cli.js run-android",
+    "android:pre":
+      "adb reverse tcp:5000 tcp:5000 && adb reverse tcp:8081 tcp:8081",
+    "android":
+      "npm run android:pre && node node_modules/react-native/local-cli/cli.js run-android",
     "ios": "node node_modules/react-native/local-cli/cli.js run-ios",
     "relay": "relay-compiler --src ./src --schema data/schema.graphql",
     "devtools": "react-devtools",

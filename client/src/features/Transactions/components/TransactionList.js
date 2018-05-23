@@ -2,15 +2,10 @@
 import React, { Component } from 'react';
 import styled from 'styled-components/native';
 import List from '@components/List';
-import TransactionSavedSubscription from '../subscriptions/TransactionSaved';
 import { colors } from '@app/constants/styles';
 import { types } from '@app/constants/app';
 
 class TransactionList extends Component {
-  componentDidMount() {
-    TransactionSavedSubscription();
-  }
-
   handleEndReached = () => {
     const { relay } = this.props;
 
@@ -58,7 +53,7 @@ class TransactionList extends Component {
 
 const Wrapper = styled.View`
   flex: 2;
-  background-color: ${colors.ghostwhite};
+  background-color: ${colors.white};
 `;
 
 const Header = styled.View`

@@ -11,7 +11,9 @@ export const colors = {
 
 export const images = {
   'squared-plus': require('../assets/squared-plus.png'),
+  'squared-plus-active': require('../assets/squared-plus-active.png'),
   'bar-graph': require('../assets/bar-graph.png'),
-  user: require('../assets/user.png'),
-  credit: require('../assets/credit.png'),
+  'bar-graph-active': require('../assets/bar-graph-active.png'),
+  list: require('../assets/list.png'),
+  'list-active': require('../assets/list-active.png'),
 };

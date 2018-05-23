@@ -2,7 +2,6 @@
 import React from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 import styled from 'styled-components/native';
-import Button from '@components/Button';
 import { colors } from '@app/constants/styles';
 
 const BalanceInfo = ({ query }) => (
@@ -11,15 +10,8 @@ const BalanceInfo = ({ query }) => (
     colors={[colors.blue, colors.cornflowerblue]}>
     <Label>Balance (BRL)</Label>
     <Text>${query.dashboard.balance.toFixed(2)}</Text>
-    <SpacedButton transparent={true}>
-      {'\ud83d\udcb2'} NEW TRANSACTION
-    </SpacedButton>
   </Gradient>
 );
-
-const SpacedButton = styled(Button)`
-  margin-top: 2%;
-`;
 
 const Gradient = styled(LinearGradient)`
   flex: 1;

@@ -1,3 +1,4 @@
+// @flow
 import React from 'react';
 import { QueryRenderer, createFragmentContainer, graphql } from 'react-relay';
 import environment from '@app/createRelayEnvironment';
