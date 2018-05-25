@@ -1,13 +1,13 @@
 import React from 'react';
-import { View } from 'react-native';
+import Container from '@components/Container';
 import TransactionListQuery from './queries/TransactionList';
 
 class Transactions extends React.Component {
   render() {
     return (
-      <View style={{ flex: 1 }}>
+      <Container>
         <TransactionListQuery />
-      </View>
+      </Container>
     );
   }
 }

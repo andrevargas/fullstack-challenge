@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-import { View } from 'react-native';
+import Container from '@components/Container';
 import DashboardQuery from './queries/Dashboard';
 import TransactionSavedSubscription from './subscriptions/TransactionSaved';
 
@@ -11,9 +11,9 @@ class Dashboard extends React.Component {
 
   render() {
     return (
-      <View style={{ flex: 1 }}>
+      <Container>
         <DashboardQuery />
-      </View>
+      </Container>
     );
   }
 }
