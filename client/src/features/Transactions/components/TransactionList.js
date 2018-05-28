@@ -35,9 +35,6 @@ class TransactionList extends Component {
     const { isLoading } = this.props.relay;
     return (
       <Wrapper>
-        <Header>
-          <Title>Transaction History</Title>
-        </Header>
         <List
           data={transactions.edges}
           keyExtractor={item => item.node.id}
@@ -56,19 +53,9 @@ const Wrapper = styled.View`
   background-color: ${colors.white};
 `;
 
-const Header = styled.View`
-  width: 100%;
-  padding: 10px;
-`;
-
-const Title = styled.Text`
-  color: hsl(233, 10%, 60%);
-  font-size: 15px;
-`;
-
 const Value = styled.Text`
   color: ${props =>
-    props.type === types.EXPENSE ? colors.tomato : colors.blue};
+    props.type === types.EXPENSE ? colors.coral : colors.blue};
   font-size: 16px;
   text-align: right;
   font-weight: 500;

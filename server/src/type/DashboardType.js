@@ -11,6 +11,10 @@ export default new GraphQLObjectType({
       type: GraphQLFloat,
       resolve: dashboard => dashboard.balance,
     },
+    expenses: {
+      type: GraphQLFloat,
+      resolve: dashboard => dashboard.expenses,
+    },
   }),
   interfaces: () => [NodeInterface],
 });

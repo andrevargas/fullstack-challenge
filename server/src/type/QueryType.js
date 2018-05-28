@@ -15,7 +15,7 @@ import { NodeField } from '../interface/NodeInterface';
 import { UserLoader, TransactionLoader } from '../loader';
 
 import WalletType from '../type/WalletType';
-import { Wallet } from '../model';
+import { Wallet, Transaction } from '../model';
 
 export default new GraphQLObjectType({
   name: 'Query',
@@ -50,7 +50,10 @@ export default new GraphQLObjectType({
     },
     dashboard: {
       type: DashboardType,
-      resolve: async () => Wallet.getTotalBalance(),
+      resolve: async () => ({
+        balance: await Wallet.getTotalBalance(),
+        expenses: await Transaction.getTotalExpenses(),
+      }),
     },
     wallet: {
       type: WalletType,

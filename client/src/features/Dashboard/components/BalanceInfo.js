@@ -1,14 +1,23 @@
 // @flow
 import React from 'react';
+import { View } from 'react-native';
 import styled from 'styled-components/native';
 import GradientCard from '@components/GradientCard';
 import { colors } from '@app/constants/styles';
 
 const BalanceInfo = ({ query }) => (
-  <GradientCard style={{ margin: '4%' }}>
-    <Label>Balance (BRL)</Label>
-    <Text>${query.dashboard.balance.toFixed(2)}</Text>
-  </GradientCard>
+  <View style={{ flex: 1 }}>
+    <GradientCard style={{ margin: 20 }}>
+      <Label>Balance (BRL)</Label>
+      <Text>${query.dashboard.balance.toFixed(2)}</Text>
+    </GradientCard>
+    <GradientCard
+      style={{ margin: 20, marginTop: 0 }}
+      colors={[colors.persimmon, colors.coral]}>
+      <Label>Balance (BRL)</Label>
+      <Text>${query.dashboard.expenses.toFixed(2)}</Text>
+    </GradientCard>
+  </View>
 );
 
 const Label = styled.Text`

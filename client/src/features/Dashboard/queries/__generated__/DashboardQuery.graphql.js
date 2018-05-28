@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 9f7c25f5773bb3125e6160e1be1e3a89
+ * @relayHash 3fb4ec5e936288bf5b1dc2b0fafb1779
  */
 
 /* eslint-disable */
@@ -25,6 +25,7 @@ query DashboardQuery {
 fragment Dashboard_query on Query {
   dashboard {
     balance
+    expenses
     id
   }
 }
@@ -35,7 +36,7 @@ const node/*: ConcreteRequest*/ = {
   "operationKind": "query",
   "name": "DashboardQuery",
   "id": null,
-  "text": "query DashboardQuery {\n  ...Dashboard_query\n}\n\nfragment Dashboard_query on Query {\n  dashboard {\n    balance\n    id\n  }\n}\n",
+  "text": "query DashboardQuery {\n  ...Dashboard_query\n}\n\nfragment Dashboard_query on Query {\n  dashboard {\n    balance\n    expenses\n    id\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -69,6 +70,13 @@ const node/*: ConcreteRequest*/ = {
             "kind": "ScalarField",
             "alias": null,
             "name": "balance",
+            "args": null,
+            "storageKey": null
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "expenses",
             "args": null,
             "storageKey": null
           },

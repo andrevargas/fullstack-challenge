@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash d198df632dbd55cb0a15befc23fa9178
+ * @relayHash 8078bed83f8bcc553d7d6a449aab3e7d
  */
 
 /* eslint-disable */
@@ -15,6 +15,7 @@ export type TransactionSavedSubscriptionResponse = {|
   +TransactionSaved: ?{|
     +dashboard: ?{|
       +balance: ?number,
+      +expenses: ?number,
     |},
     +transaction: ?{|
       +node: ?{|
@@ -35,6 +36,7 @@ subscription TransactionSavedSubscription {
   TransactionSaved {
     dashboard {
       balance
+      expenses
       id
     }
     transaction {
@@ -61,11 +63,18 @@ var v0 = {
 v1 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "id",
+  "name": "expenses",
   "args": null,
   "storageKey": null
 },
 v2 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "id",
+  "args": null,
+  "storageKey": null
+},
+v3 = {
   "kind": "LinkedField",
   "alias": null,
   "name": "transaction",
@@ -83,7 +92,7 @@ v2 = {
       "concreteType": "Transaction",
       "plural": false,
       "selections": [
-        v1,
+        v2,
         {
           "kind": "ScalarField",
           "alias": null,
@@ -121,7 +130,7 @@ return {
   "operationKind": "subscription",
   "name": "TransactionSavedSubscription",
   "id": null,
-  "text": "subscription TransactionSavedSubscription {\n  TransactionSaved {\n    dashboard {\n      balance\n      id\n    }\n    transaction {\n      node {\n        id\n        value\n        description\n        type\n        date\n      }\n    }\n  }\n}\n",
+  "text": "subscription TransactionSavedSubscription {\n  TransactionSaved {\n    dashboard {\n      balance\n      expenses\n      id\n    }\n    transaction {\n      node {\n        id\n        value\n        description\n        type\n        date\n      }\n    }\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -148,10 +157,11 @@ return {
             "concreteType": "Dashboard",
             "plural": false,
             "selections": [
-              v0
+              v0,
+              v1
             ]
           },
-          v2
+          v3
         ]
       }
     ]
@@ -180,15 +190,16 @@ return {
             "plural": false,
             "selections": [
               v0,
-              v1
+              v1,
+              v2
             ]
           },
-          v2
+          v3
         ]
       }
     ]
   }
 };
 })();
-(node/*: any*/).hash = 'd87eaf66171a3cc8447d73b32e2ee373';
+(node/*: any*/).hash = 'b60c99ff34dc304712f7a8c1688530c7';
 module.exports = node;

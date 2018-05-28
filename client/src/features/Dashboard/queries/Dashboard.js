@@ -10,6 +10,7 @@ const DashboardFragmentContainer = createFragmentContainer(
     fragment Dashboard_query on Query {
       dashboard {
         balance
+        expenses
       }
     }
   `

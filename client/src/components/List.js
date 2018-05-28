@@ -12,8 +12,9 @@ List.Item = ListItem;
 
 const Separator = styled.View`
   height: 1px;
-  width: 100%;
+  width: 90%;
   background-color: ${colors.fog};
+  align-self: center;
 `;
 
 export default List;

@@ -33,7 +33,7 @@ Schema.statics = {
       { $project: { _id: 0 } },
       { $limit: 1 },
     ]);
-    return total[0];
+    return total[0].balance;
   },
 };
 

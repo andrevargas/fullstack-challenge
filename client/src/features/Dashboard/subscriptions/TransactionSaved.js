@@ -8,6 +8,7 @@ const subscription = graphql`
     TransactionSaved {
       dashboard {
         balance
+        expenses
       }
       transaction {
         node {

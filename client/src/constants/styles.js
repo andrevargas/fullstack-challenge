@@ -4,9 +4,11 @@ export const colors = {
   white: '#ffffff',
   ghostwhite: '#f5f5f8',
   fog: '#e9eaf1',
+  boulder: '#757575',
   blue: '#21b6fe',
   cornflowerblue: '#7483f7',
-  tomato: '#ff6350',
+  coral: '#fd7145',
+  persimmon: '#ff5356',
 };
 
 export const images = {

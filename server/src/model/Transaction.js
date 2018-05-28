@@ -53,4 +53,16 @@ Schema.post('save', async transaction => {
   await wallet.save();
 });
 
+Schema.statics = {
+  getTotalExpenses: async function getTotalExpenses() {
+    const total = await this.aggregate([
+      { $match: { type: EXEPENSE } },
+      { $group: { _id: null, expenses: { $sum: '$value' } } },
+      { $project: { _id: 0 } },
+      { $limit: 1 },
+    ]);
+    return total[0].expenses;
+  },
+};
+
 export default mongoose.model('Transaction', Schema);

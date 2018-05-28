@@ -13,6 +13,7 @@ declare export opaque type Dashboard_query$ref: FragmentReference;
 export type Dashboard_query = {|
   +dashboard: ?{|
     +balance: ?number,
+    +expenses: ?number,
   |},
   +$refType: Dashboard_query$ref,
 |};
@@ -41,10 +42,17 @@ const node/*: ConcreteFragment*/ = {
           "name": "balance",
           "args": null,
           "storageKey": null
+        },
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "name": "expenses",
+          "args": null,
+          "storageKey": null
         }
       ]
     }
   ]
 };
-(node/*: any*/).hash = '7e4ca1fa843e837cacbf110eafee9609';
+(node/*: any*/).hash = '70dd4ef77e540715c584bc911d49ed4a';
 module.exports = node;

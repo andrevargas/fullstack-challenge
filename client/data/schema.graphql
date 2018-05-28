@@ -40,6 +40,9 @@ type Dashboard implements Node {
 
   # Total balance.
   balance: Float
+
+  # Total expenses.
+  expenses: Float
 }
 
 enum TransactionTypeEnum {
