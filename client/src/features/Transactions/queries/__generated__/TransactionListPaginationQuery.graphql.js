@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash cb64987f30488277802b05b4305dcddb
+ * @relayHash 863896e36874ba651cf8dee0ebe56a46
  */
 
 /* eslint-disable */
@@ -15,7 +15,7 @@ export type TransactionListPaginationQueryVariables = {|
   cursor?: ?string,
 |};
 export type TransactionListPaginationQueryResponse = {|
-  +$fragmentRefs: TransactionList_query$ref,
+  +$fragmentRefs: TransactionList_query$ref
 |};
 */
 
@@ -236,5 +236,6 @@ return {
   }
 };
 })();
+// prettier-ignore
 (node/*: any*/).hash = 'd6f6f6d6f3251aa7c0999e36b5ff4d47';
 module.exports = node;

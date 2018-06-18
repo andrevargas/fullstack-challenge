@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 3fb4ec5e936288bf5b1dc2b0fafb1779
+ * @relayHash c65cfe0b70c9382ceb5d2ac1ebfbe76f
  */
 
 /* eslint-disable */
@@ -10,9 +10,9 @@
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
 type Dashboard_query$ref = any;
-export type DashboardQueryVariables = {| |};
+export type DashboardQueryVariables = {||};
 export type DashboardQueryResponse = {|
-  +$fragmentRefs: Dashboard_query$ref,
+  +$fragmentRefs: Dashboard_query$ref
 |};
 */
 
@@ -92,5 +92,6 @@ const node/*: ConcreteRequest*/ = {
     ]
   }
 };
+// prettier-ignore
 (node/*: any*/).hash = '2344155df52bff3a612a8dfa1fcda17d';
 module.exports = node;

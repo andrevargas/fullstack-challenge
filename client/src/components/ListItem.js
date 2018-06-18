@@ -9,12 +9,14 @@ import type { Element } from 'react';
 type Props = {
   title: string,
   subtitle: string,
+  icon?: Element,
+  renderLeft?: () => Element,
   renderRight?: () => Element,
 };
 
 const ListItem = ({ title, subtitle, renderRight }: Props) => (
   <Wrapper>
-    <Column>
+    <Column flex={3}>
       <Title>{title}</Title>
       <Subtitle>{subtitle}</Subtitle>
     </Column>
@@ -23,7 +25,7 @@ const ListItem = ({ title, subtitle, renderRight }: Props) => (
 );
 
 const Wrapper = styled.View`
-  padding-vertical: 15px;
+  padding-vertical: 20px;
   padding-horizontal: 20px;
   flex-direction: row;
 `;
@@ -31,7 +33,7 @@ const Wrapper = styled.View`
 const Title = styled.Text`
   font-size: 16px;
   font-weight: 500;
-  color: ${colors.boulder};
+  color: ${colors.boulder.toString()};
 `;
 
 const Subtitle = styled.Text`

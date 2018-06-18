@@ -1,14 +1,17 @@
 // @flow
 
+import color from 'color';
+
 export const colors = {
-  white: '#ffffff',
-  ghostwhite: '#f5f5f8',
-  fog: '#e9eaf1',
-  boulder: '#757575',
-  blue: '#21b6fe',
-  cornflowerblue: '#7483f7',
-  coral: '#fd7145',
-  persimmon: '#ff5356',
+  white: color('#ffffff'),
+  ghostwhite: color('#f5f5f8'),
+  fog: color('#e9eaf1'),
+  boulder: color('#757575'),
+  silver: color('#a2a2a2'),
+  blue: color('#21b6fe'),
+  cornflowerblue: color('#7483f7'),
+  coral: color('#fd7145'),
+  persimmon: color('#ff5356'),
 };
 
 export const images = {

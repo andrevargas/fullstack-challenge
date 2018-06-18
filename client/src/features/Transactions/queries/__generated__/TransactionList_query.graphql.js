@@ -8,8 +8,8 @@
 
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
-export type TransactionTypeEnum = ('EXPENSE' | 'REVENUE' | '%future added value');
-import type { FragmentReference } from 'relay-runtime';
+export type TransactionTypeEnum = "EXPENSE" | "REVENUE" | "%future added value";
+import type { FragmentReference } from "relay-runtime";
 declare export opaque type TransactionList_query$ref: FragmentReference;
 export type TransactionList_query = {|
   +transactions: ?{|
@@ -24,7 +24,7 @@ export type TransactionList_query = {|
         +description: ?string,
         +type: ?TransactionTypeEnum,
         +date: ?string,
-      |},
+      |}
     |}>,
   |},
   +$refType: TransactionList_query$ref,
@@ -170,5 +170,6 @@ const node/*: ConcreteFragment*/ = {
     }
   ]
 };
+// prettier-ignore
 (node/*: any*/).hash = 'd82f1c6c857ae228321b39015c4bed57';
 module.exports = node;

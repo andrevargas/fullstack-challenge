@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 8078bed83f8bcc553d7d6a449aab3e7d
+ * @relayHash 1ff6d7a93afe54f57e639d9f70717420
  */
 
 /* eslint-disable */
@@ -9,8 +9,8 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
-export type TransactionTypeEnum = ('EXPENSE' | 'REVENUE' | '%future added value');
-export type TransactionSavedSubscriptionVariables = {| |};
+export type TransactionTypeEnum = "EXPENSE" | "REVENUE" | "%future added value";
+export type TransactionSavedSubscriptionVariables = {||};
 export type TransactionSavedSubscriptionResponse = {|
   +TransactionSaved: ?{|
     +dashboard: ?{|
@@ -24,9 +24,9 @@ export type TransactionSavedSubscriptionResponse = {|
         +description: ?string,
         +type: ?TransactionTypeEnum,
         +date: ?string,
-      |},
+      |}
     |},
-  |},
+  |}
 |};
 */
 
@@ -201,5 +201,6 @@ return {
   }
 };
 })();
+// prettier-ignore
 (node/*: any*/).hash = 'b60c99ff34dc304712f7a8c1688530c7';
 module.exports = node;

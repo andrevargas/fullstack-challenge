@@ -13,7 +13,7 @@ List.Item = ListItem;
 const Separator = styled.View`
   height: 1px;
   width: 90%;
-  background-color: ${colors.fog};
+  background-color: ${colors.fog.toString()};
   align-self: center;
 `;
 

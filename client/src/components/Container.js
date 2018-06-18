@@ -3,7 +3,7 @@ import { colors } from '@app/constants/styles';
 
 const Container = styled.View`
   flex: 1;
-  background-color: ${colors.white};
+  background-color: ${colors.white.toString()};
 `;
 
 export default Container;

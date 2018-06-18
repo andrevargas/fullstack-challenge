@@ -5,7 +5,7 @@ import { colors } from '@app/constants/styles';
 const GradientCard = Card.withComponent(LinearGradient);
 
 GradientCard.defaultProps = {
-  colors: [colors.cornflowerblue, colors.blue],
+  colors: [colors.cornflowerblue.toString(), colors.blue.toString()],
   start: { x: 0, y: 0 },
   end: { x: 1, y: 0 },
 };

@@ -8,7 +8,7 @@
 
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
-import type { FragmentReference } from 'relay-runtime';
+import type { FragmentReference } from "relay-runtime";
 declare export opaque type Dashboard_query$ref: FragmentReference;
 export type Dashboard_query = {|
   +dashboard: ?{|
@@ -54,5 +54,6 @@ const node/*: ConcreteFragment*/ = {
     }
   ]
 };
+// prettier-ignore
 (node/*: any*/).hash = '70dd4ef77e540715c584bc911d49ed4a';
 module.exports = node;

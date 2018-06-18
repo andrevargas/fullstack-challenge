@@ -10,7 +10,7 @@ const Header = ({ title }) => (
 
 const Container = styled.View`
   height: 56px;
-  background-color: ${colors.white};
+  background-color: ${colors.white.toString()};
   width: 100%;
   justify-content: center;
   align-items: center;
@@ -18,7 +18,7 @@ const Container = styled.View`
 
 const Title = styled.Text`
   font-size: 18px;
-  color: ${colors.boulder};
+  color: ${colors.boulder.toString()};
   text-align: center;
 `;
 
