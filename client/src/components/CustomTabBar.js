@@ -13,7 +13,7 @@ export default class CustomTabBar extends React.PureComponent {
 
     this.keyboardDidHideListener = Keyboard.addListener(
       'keyboardDidHide',
-      this.handleKeyBoardDidShow
+      this.handleKeyboardDidHide
     );
   }
 

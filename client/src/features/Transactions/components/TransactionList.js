@@ -48,7 +48,7 @@ class TransactionList extends Component {
 
 const Wrapper = styled.View`
   flex: 2;
-  background-color: ${colors.white};
+  background-color: ${colors.white.toString()};
 `;
 
 const Value = styled.Text`
